@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>TitleBar.qml</file>
+        <file>MainMenu.qml</file>
+        <file>SwipeArea.qml</file>
+        <file>PageSettings.qml</file>
+    </qresource>
+</RCC>
