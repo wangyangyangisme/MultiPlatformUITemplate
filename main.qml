@@ -11,7 +11,7 @@ Window {
     minimumHeight: 360
     minimumWidth: 360
     property int orientation: 0 //0 = portrait, 1 = landscape
-//  visibility: Window.FullScreen
+    //visibility: Window.FullScreen
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.125
@@ -23,10 +23,15 @@ Window {
     property double mainMenuWidthPortraitRatio: 0.8
     property int mainMenuWidth: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.width * mainMenuWidthLandscapeRatio : idMainWindow.width * mainMenuWidthPortraitRatio
     property bool isMenuOpen: false
+    property bool isAutohideMenuAfterChoice: true
 
 //Swipe area properties
+    property bool isTwoFingerGestures: false //if false one finger gesture only avaiable
     property int maximumTimeGesture: 190 //[ms] in this time you must move from point a to b to activate gesture
-    //property double minimumDistanceGestureActivationRatio: -> for now unused (setting in Swipe area is used)
+    //property int minimumTimeGesture: 20 //[ms] minimum time to make gesture start
+    property double swipeAreaGesturePortraitRatio: 0.32
+    property double swipeAreaGestureLandscapeRatio: 0.16
+    property int minimumGestureActivationDistance: idMainWindow.orientation == 0 ? idMainWindow.width * swipeAreaGesturePortraitRatio : idMainWindow.width * swipeAreaGestureLandscapeRatio
 
 //End of properties section
 
@@ -38,12 +43,12 @@ Window {
         if( width > height  && idMainWindow.orientation != 1) {
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
-            mainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
+            idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             console.log("main window aspect ratio changed -> orientation = Landscape")
         } else if (width < height && idMainWindow.orientation != 0){
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
-            mainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
+            idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
             console.log("main window aspect ratio changed -> orientation = Portrait")
         }
     }
