@@ -48,7 +48,6 @@ Rectangle {
                height: submenuHeight
                visible: true
                color: "grey"
-
            }
 
            Rectangle {

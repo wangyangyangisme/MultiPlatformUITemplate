@@ -3,6 +3,8 @@ import QtQuick.Window 2.2
 
 Window {
 //Main window properties
+    property int orientation: 0 //0 = portrait, 1 = landscape
+    property bool isFullScreen: true
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate")
     visible: true
@@ -10,8 +12,8 @@ Window {
     height: 640
     minimumHeight: 360
     minimumWidth: 360
-    property int orientation: 0 //0 = portrait, 1 = landscape
-    //visibility: Window.FullScreen
+    visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!!
+
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.125
@@ -32,7 +34,6 @@ Window {
     property double swipeAreaGesturePortraitRatio: 0.32
     property double swipeAreaGestureLandscapeRatio: 0.16
     property int minimumGestureActivationDistance: idMainWindow.orientation == 0 ? idMainWindow.width * swipeAreaGesturePortraitRatio : idMainWindow.width * swipeAreaGestureLandscapeRatio
-
 //End of properties section
 
     signal menuShowHide()
@@ -59,12 +60,19 @@ Window {
         anchors.top: parent.top
     }
 
-    Loader {
-        id: idLoaderFrame
+    Rectangle {
         anchors.top: idTitleBar.bottom
-        anchors.bottom: idMainWindow.bottom
-        anchors.left: idMainWindow.left
-        anchors.right: idMainWindow.right
+        width: idMainWindow.width
+        height: idMainMenu.height
+        color: "green"
+
+        Loader {
+            id: idLoaderFrame
+            asynchronous: true
+            onLoaded: {
+               item.test(idMainWindow.width, idMainMenu.height)
+           }
+        }
     }
 
     MainMenu {
