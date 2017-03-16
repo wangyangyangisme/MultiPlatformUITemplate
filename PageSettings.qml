@@ -6,6 +6,7 @@ Rectangle {
     color: "pink"
 
     Label {
+
         text: "TAK"
     }
 
@@ -15,6 +16,12 @@ Rectangle {
         idPageSettings.width = a
         idPageSettings.height = b
         }
+
+    function refreshPage(width, height) {
+        console.log("idPageSettings refresh")
+        idPageSettings.width = width
+        idPageSettings.height = height
+    }
 }
 
 

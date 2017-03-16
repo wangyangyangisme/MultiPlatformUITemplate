@@ -56,7 +56,7 @@ MultiPointTouchArea
             {
                 //submenu1
                 if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 2 &&  touchPoint1.y > titleBarHeight) {
-                    console.log("submenu1")
+                    console.log("SwipeArea -> submenu 1 clicked")
                     idLoaderFrame.source="PageSettings.qml"
                     idMainWindow.menuShowHide()
                 }

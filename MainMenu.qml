@@ -9,8 +9,10 @@ Rectangle {
     height: idMainWindow.height - idTitleBar.height
     width: idMainWindow.mainMenuWidth
     property int submenuHeight: idMainWindow.submenuHeight
+    property int animationDurationMain: 300
+    property int animationDuration: 300
 
-    Behavior on x { NumberAnimation { duration: 350; easing.type: Easing.OutQuad } }
+    Behavior on x { NumberAnimation { duration: animationDuration; easing.type: Easing.InOutQuad } }
 
     Connections {
         target: idMainWindow
@@ -40,22 +42,47 @@ Rectangle {
             x=0
             idMainWindow.isMenuOpen = true
         }
-      }
 
-           Rectangle {
-               id: submenu1
-               width: parent.width
-               height: submenuHeight
-               visible: true
-               color: "grey"
-           }
+        onMenuRefresh: {
+            animationDuration = 0
+            if(idMainWindow.isMenuOpen == true) {
+                x=0
+            }
+            else if (idMainWindow.isMenuOpen == false) {
+                console.log("menu hidden")
+                x=0;
+                x=-width
+            }
+            animationDuration = animationDurationMain
+        }
+    }
 
-           Rectangle {
-               id: submenu2
-               anchors.top: submenu1.bottom
-               width: parent.width
-               height: submenuHeight
-               visible: true
-               color: "silver"
-           }
+    Rectangle {
+        id: submenu1
+        width: parent.width
+        height: submenuHeight
+        visible: true
+        color: "grey"
+    }
+
+    Rectangle {
+        id: submenu2
+        anchors.top: submenu1.bottom
+        width: parent.width
+        height: submenuHeight
+        visible: true
+        color: "silver"
+    }
+
+    Rectangle {
+        id: submenu3
+        anchors.top: submenu2.bottom
+        width: parent.width
+        height: submenuHeight
+        visible: true
+        color: "grey"
+    }
+
+
+
 }

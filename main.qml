@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape
-    property bool isFullScreen: true
+    property bool isFullScreen: false
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate")
     visible: true
@@ -39,6 +39,7 @@ Window {
     signal menuShowHide()
     signal menuSwipeGestureHide()
     signal menuSwipeGestureShow()
+    signal menuRefresh()
 
     onWidthChanged: {
         if( width > height  && idMainWindow.orientation != 1) {
@@ -46,12 +47,15 @@ Window {
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             console.log("main window aspect ratio changed -> orientation = Landscape")
+
         } else if (width < height && idMainWindow.orientation != 0){
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
             console.log("main window aspect ratio changed -> orientation = Portrait")
         }
+        idLoaderFrame.item.refreshPage(idMainWindow.width, idMainMenu.height) //at start one of pege should be loaded, eg Main Page -> for now error when no page loaded
+        menuRefresh()
     }
 
     TitleBar {
@@ -70,7 +74,7 @@ Window {
             id: idLoaderFrame
             asynchronous: true
             onLoaded: {
-               item.test(idMainWindow.width, idMainMenu.height)
+               item.refreshPage(idMainWindow.width, idMainMenu.height)
            }
         }
     }
@@ -79,6 +83,8 @@ Window {
         id: idMainMenu
         anchors.top: idTitleBar.bottom
         submenuHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
+
+
     }
 
     SwipeArea {
