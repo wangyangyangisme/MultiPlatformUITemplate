@@ -3,7 +3,9 @@
         <file>main.qml</file>
         <file>TitleBar.qml</file>
         <file>MainMenu.qml</file>
-        <file>SwipeArea.qml</file>
+        <file>TouchArea.qml</file>
         <file>PageSettings.qml</file>
+        <file>PageMain.qml</file>
+        <file>PageAbout.qml</file>
     </qresource>
 </RCC>

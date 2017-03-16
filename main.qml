@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape
-    property bool isFullScreen: false
+    property bool isFullScreen: true
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate")
     visible: true
@@ -12,8 +12,7 @@ Window {
     height: 640
     minimumHeight: 360
     minimumWidth: 360
-    visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!!
-
+    visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.125
@@ -64,18 +63,15 @@ Window {
         anchors.top: parent.top
     }
 
-    Rectangle {
+    Item {
         anchors.top: idTitleBar.bottom
         width: idMainWindow.width
         height: idMainMenu.height
-        color: "green"
 
         Loader {
             id: idLoaderFrame
             asynchronous: true
-            onLoaded: {
-               item.refreshPage(idMainWindow.width, idMainMenu.height)
-           }
+            onLoaded: { item.refreshPage(idMainWindow.width, idMainMenu.height) }
         }
     }
 
@@ -83,11 +79,9 @@ Window {
         id: idMainMenu
         anchors.top: idTitleBar.bottom
         submenuHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
-
-
     }
 
-    SwipeArea {
+    TouchArea {
         id: idSwipeArea
         anchors.fill: parent
     }

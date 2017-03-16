@@ -54,15 +54,26 @@ MultiPointTouchArea
             //submenu actions when menu is open
             if (idMainWindow.isMenuOpen == true)
             {
-                //submenu1
+                //submenu1 touch action
                 if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 2 &&  touchPoint1.y > titleBarHeight) {
-                    console.log("SwipeArea -> submenu 1 clicked")
+                    console.log("submenu1 clicked")
+                    idLoaderFrame.source="PageMain.qml"
+                    idMainWindow.menuShowHide()
+                }
+
+                //submenu2 touch action
+                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) {
+                    console.log("submenu2 clicked")
                     idLoaderFrame.source="PageSettings.qml"
                     idMainWindow.menuShowHide()
                 }
 
-                //submenu2
-                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) { console.log("submenu2")}
+                //submenu3 touch action
+                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 4 &&  touchPoint1.y > titleBarHeight *3) {
+                    console.log("submenu3 clicked")
+                    idLoaderFrame.source="PageAbout.qml"
+                    idMainWindow.menuShowHide()
+                }
             }
         }
         else if (idMainWindow.isTwoFingerGestures == true)

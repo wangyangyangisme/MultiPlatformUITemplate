@@ -58,11 +58,24 @@ Rectangle {
     }
 
     Rectangle {
+        id: edge
+        anchors.left: parent.right
+        color: "light green"
+        width: parent.width*0.05
+        height: parent.height
+    }
+
+    Rectangle {
         id: submenu1
         width: parent.width
         height: submenuHeight
         visible: true
         color: "grey"
+
+        Label {
+            text: "Main"
+            anchors.centerIn: parent
+        }
     }
 
     Rectangle {
@@ -72,6 +85,11 @@ Rectangle {
         height: submenuHeight
         visible: true
         color: "silver"
+
+        Label {
+            text: "Settings"
+            anchors.centerIn: parent
+        }
     }
 
     Rectangle {
@@ -81,8 +99,11 @@ Rectangle {
         height: submenuHeight
         visible: true
         color: "grey"
+
+        Label {
+            text: "About"
+            anchors.centerIn: parent
+        }
     }
-
-
 
 }
