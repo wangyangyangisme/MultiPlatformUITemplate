@@ -54,7 +54,24 @@ Window {
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
             console.log("main window aspect ratio changed -> orientation = Portrait")
         }
-        idLoaderFrame.item.refreshPage(idMainWindow.width, idMainMenu.height) //at start one of pege should be loaded, eg Main Page -> for now error when no page loaded
+        idLoaderFrame.refreshPage(idMainWindow.width, idMainWindow.height - titleBarHeight)
+        menuRefresh()
+    }
+
+    onHeightChanged: {
+        if( width > height  && idMainWindow.orientation != 1) {
+            idMainWindow.orientation = 1
+            titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
+            idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
+            console.log("main window aspect ratio changed -> orientation = Landscape")
+
+        } else if (width < height && idMainWindow.orientation != 0){
+            idMainWindow.orientation = 0
+            titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
+            idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
+            console.log("main window aspect ratio changed -> orientation = Portrait")
+        }
+        idLoaderFrame.refreshPage(idMainWindow.width, idMainWindow.height - titleBarHeight)
         menuRefresh()
     }
 

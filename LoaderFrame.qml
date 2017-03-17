@@ -14,4 +14,8 @@ Item {
         idLoader.source="PageMain.qml"
     }
 
+    function refreshPage(width, height) {
+        idLoader.item.refreshPage(width, height)
+    }
+
 }
