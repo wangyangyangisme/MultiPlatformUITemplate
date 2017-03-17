@@ -7,5 +7,6 @@
         <file>PageSettings.qml</file>
         <file>PageMain.qml</file>
         <file>PageAbout.qml</file>
+        <file>LoaderFrame.qml</file>
     </qresource>
 </RCC>

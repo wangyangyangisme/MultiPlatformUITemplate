@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape
-    property bool isFullScreen: true
+    property bool isFullScreen: false
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate")
     visible: true
@@ -27,9 +27,10 @@ Window {
     property bool isAutohideMenuAfterChoice: true
 
 //Swipe area properties
+    //property bool isTouchClickOnPress: true //if false then all touch click events will start OnRelease //TODO
     property bool isTwoFingerGestures: false //if false one finger gesture only avaiable
     property int maximumTimeGesture: 190 //[ms] in this time you must move from point a to b to activate gesture
-    //property int minimumTimeGesture: 20 //[ms] minimum time to make gesture start
+    //property int minimumTimeGesture: 20 //[ms] minimum time to make gesture start //TODO
     property double swipeAreaGesturePortraitRatio: 0.32
     property double swipeAreaGestureLandscapeRatio: 0.16
     property int minimumGestureActivationDistance: idMainWindow.orientation == 0 ? idMainWindow.width * swipeAreaGesturePortraitRatio : idMainWindow.width * swipeAreaGestureLandscapeRatio
@@ -59,26 +60,20 @@ Window {
 
     TitleBar {
         id: idTitleBar
-        height: titleBarHeight
         anchors.top: parent.top
+        height: titleBarHeight
     }
 
-    Item {
+    LoaderFrame {
+        id: idLoaderFrame
         anchors.top: idTitleBar.bottom
         width: idMainWindow.width
         height: idMainMenu.height
-
-        Loader {
-            id: idLoaderFrame
-            asynchronous: true
-            onLoaded: { item.refreshPage(idMainWindow.width, idMainMenu.height) }
-        }
     }
 
     MainMenu {
         id: idMainMenu
         anchors.top: idTitleBar.bottom
-        submenuHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
     }
 
     TouchArea {

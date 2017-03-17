@@ -1,5 +1,5 @@
-import QtQuick 2.8
-import QtQuick.Controls 1.2
+import QtQuick 2.5
+import QtQuick.Controls 2.1
 
 Rectangle {
     id: idMainMenu
@@ -8,7 +8,8 @@ Rectangle {
     x: -width
     height: idMainWindow.height - idTitleBar.height
     width: idMainWindow.mainMenuWidth
-    property int submenuHeight: idMainWindow.submenuHeight
+    property int submenuHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
+    //property int submenuHeight: idMainWindow.submenuHeight
     property int animationDurationMain: 300
     property int animationDuration: 300
 
