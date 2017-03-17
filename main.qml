@@ -58,6 +58,7 @@ Window {
         menuRefresh()
     }
 
+
     TitleBar {
         id: idTitleBar
         anchors.top: parent.top

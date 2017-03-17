@@ -9,4 +9,9 @@ Item {
         onLoaded: { item.refreshPage(idMainWindow.width, idMainMenu.height) }
     }
 
+    onParentChanged: {
+        console.log("LoaderFrame -> loading start page")
+        idLoader.source="PageMain.qml"
+    }
+
 }
