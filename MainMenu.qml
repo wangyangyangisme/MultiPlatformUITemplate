@@ -75,6 +75,14 @@ Rectangle {
             text: "Main"
             anchors.centerIn: parent
         }
+
+        Image {
+            source: "/images/icons/phone.png"
+            height: parent.height
+            width: parent.height
+            cache: true
+            fillMode: Image.PreserveAspectFit
+        }
     }
 
     Rectangle {
@@ -83,11 +91,19 @@ Rectangle {
         width: parent.width
         height: submenuHeight
         visible: true
-        color: "silver"
+        color: "grey"
 
         Label {
             text: "Settings"
             anchors.centerIn: parent
+        }
+
+        Image {
+            source: "/images/icons/setting.png"
+            height: parent.height
+            width: parent.height
+            cache: true
+            fillMode: Image.PreserveAspectFit
         }
     }
 
@@ -103,6 +119,13 @@ Rectangle {
             text: "About"
             anchors.centerIn: parent
         }
-    }
 
+        Image {
+            source: "/images/icons/note.png"
+            height: parent.height
+            width: parent.height
+            cache: true
+            fillMode: Image.PreserveAspectFit
+        }
+    }
 }

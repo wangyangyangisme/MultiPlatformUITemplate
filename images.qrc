@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/icons/note.png</file>
+        <file>images/icons/phone.png</file>
+        <file>images/icons/setting.png</file>
+    </qresource>
+</RCC>

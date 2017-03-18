@@ -6,6 +6,14 @@ PageBasis {
     RadioButton {
         anchors.top: parent.top
     }
+
+    TextEdit {
+        color: "white"
+        visible: true
+        anchors.centerIn: parent
+        width: 10
+        height: 100
+    }
 }
 
 
