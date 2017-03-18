@@ -3,10 +3,10 @@ import QtQuick.Window 2.2
 
 Window {
 //Main window properties
-    property int orientation: 0 //0 = portrait, 1 = landscape
+    property int orientation: 0 //0 = portrait, 1 = landscape //starting orientation
     property bool isFullScreen: false
     id: idMainWindow
-    title: qsTr("MultiPlatformTemplate")
+    title: qsTr("MultiPlatformTemplate") //Applicatio name here
     visible: true
     width: 360
     height: 640
@@ -75,18 +75,14 @@ Window {
         menuRefresh()
     }
 
-
     TitleBar {
         id: idTitleBar
         anchors.top: parent.top
-        height: titleBarHeight
     }
 
     LoaderFrame {
         id: idLoaderFrame
         anchors.top: idTitleBar.bottom
-        width: idMainWindow.width
-        height: idMainMenu.height
     }
 
     MainMenu {

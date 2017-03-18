@@ -8,5 +8,6 @@
         <file>PageMain.qml</file>
         <file>PageAbout.qml</file>
         <file>LoaderFrame.qml</file>
+        <file>PageBasis.qml</file>
     </qresource>
 </RCC>

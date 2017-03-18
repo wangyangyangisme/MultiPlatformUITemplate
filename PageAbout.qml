@@ -1,20 +1,16 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.1
 
-Rectangle {
-    id: idPageAbout
-    color: "light blue"
+PageBasis {
 
     Label {
-        text: "PAGE about"
+        color: "#ffffff"
+        text: "Author: pavvel1610 \n\nContact: pavvel1610@gmail.com\n\n
+        Version: alpha!"
         anchors.centerIn: parent
     }
 
-    function refreshPage(width, height) {
-        console.log("idPageSettings refresh")
-        idPageAbout.width = width
-        idPageAbout.height = height
-    }
+
 }
 
 

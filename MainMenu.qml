@@ -3,17 +3,16 @@ import QtQuick.Controls 2.1
 
 Rectangle {
     id: idMainMenu
-    color: "gold"
-    visible: false
+    color: "#585858"
+    visible: true
     x: -width
     height: idMainWindow.height - idTitleBar.height
     width: idMainWindow.mainMenuWidth
     property int submenuHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
-    //property int submenuHeight: idMainWindow.submenuHeight
-    property int animationDurationMain: 300
-    property int animationDuration: 300
+    property int animationDurationMain: 250
+    property int animationDuration: 250
 
-    Behavior on x { NumberAnimation { duration: animationDuration; easing.type: Easing.InOutQuad } }
+    Behavior on x { NumberAnimation { duration: animationDuration; easing.type: Easing.Linear } }
 
     Connections {
         target: idMainWindow
@@ -26,7 +25,6 @@ Rectangle {
             else {
                 console.log("mainMenu -> show")
                 x=0
-                if (visible==false) visible=true
                 idMainWindow.isMenuOpen = true
             }
         }
@@ -61,7 +59,7 @@ Rectangle {
     Rectangle {
         id: edge
         anchors.left: parent.right
-        color: "light green"
+        color: "#ffffff"
         width: parent.width*0.05
         height: parent.height
     }

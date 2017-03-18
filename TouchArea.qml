@@ -13,21 +13,22 @@ MultiPointTouchArea
     property int touchPoint2DistancePressedReleasedX: 0
     property int time: 0
 
+
     touchPoints: [ TouchPoint { id: touchPoint1 }, TouchPoint { id: touchPoint2 } ]
 
-       Rectangle {
-           width: 15; height: 15
-           color: "green"
-           x: touchPoint1.x
-           y: touchPoint1.y
-       }
+//       Rectangle {
+//           width: 15; height: 15
+//           color: "green"
+//           x: touchPoint1.x
+//           y: touchPoint1.y
+//       }
 
-       Rectangle {
-           width: 15; height: 15
-           color: "yellow"
-           x: touchPoint2.x
-           y: touchPoint2.y
-       }
+//       Rectangle {
+//           width: 15; height: 15
+//           color: "yellow"
+//           x: touchPoint2.x
+//           y: touchPoint2.y
+//       }
 
     Timer {
         id: swipeAreaTimer
