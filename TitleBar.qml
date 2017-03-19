@@ -42,10 +42,15 @@ Rectangle {
     }
 
     Label {
+        id: idTitleBarText
         anchors.left: idMainMenuButton.right
         anchors.centerIn: parent
         text: titleBarText
-        color: idMainWindow.textColor
+        color: "#ffffff"
         font.pixelSize: 0.5*parent.height
+    }
+
+    function setTitleBarName(text) {
+        idTitleBarText.text = text
     }
 }

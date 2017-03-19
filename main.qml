@@ -6,16 +6,13 @@ Window {
     property int orientation: 0 //0 = portrait, 1 = landscape //starting orientation
     property bool isFullScreen: true
     id: idMainWindow
-    title: qsTr("MultiPlatformTemplate") //Applicatio name here
+    title: qsTr("MultiPlatformTemplate") //Application name
     visible: true
     width: 360
     height: 640
     minimumHeight: 360
     minimumWidth: 360
     visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
-
-//Text Properties
-    property color textColor: "#ffffff"
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.125
@@ -28,7 +25,6 @@ Window {
     property int mainMenuWidth: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.width * mainMenuWidthLandscapeRatio : idMainWindow.width * mainMenuWidthPortraitRatio
     property bool isMenuOpen: false
     property bool isAutohideMenuAfterChoice: true
-    //property bool isFullHeightMenu: true //TODO
 
 //Swipe area properties
     //property bool isTouchClickOnPress: true //if false then all touch click events will start OnRelease //TODO
@@ -63,13 +59,13 @@ Window {
     }
 
     onHeightChanged: {
-        if( width > height  && idMainWindow.orientation != 1) {
+        if( idMainWindow.width > idMainWindow.height  && idMainWindow.orientation != 1) {
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             console.log("main window aspect ratio changed -> orientation = Landscape")
 
-        } else if (width < height && idMainWindow.orientation != 0){
+        } else if (idMainWindow.width < idMainWindow.height && idMainWindow.orientation != 0){
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
@@ -79,9 +75,26 @@ Window {
         menuRefresh()
     }
 
+    function changeActiveMenu(menuEntryNumber)
+    {
+        switch(menuEntryNumber, textToSet){
+        case 1:
+            console.log("1")
+            idLoaderFrame.source.
+
+            break;
+        case 2:
+            console.log("2")
+            break;
+        case 3:
+            console.log("3")
+            break;
+        }
+    }
+
     TitleBar {
         id: idTitleBar
-        anchors.top: parent.top
+        anchors.top: idMainWindow.top
     }
 
     LoaderFrame {

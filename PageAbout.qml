@@ -5,12 +5,9 @@ PageBasis {
 
     Label {
         color: "#ffffff"
-        text: "Author: pavvel1610 \n\nContact: pavvel1610@gmail.com\n\n
-        Version: alpha!"
+        text: "Author: pavvel1610 \n\nContact: pavvel1610@gmail.com"
         anchors.centerIn: parent
     }
-
-
 }
 
 

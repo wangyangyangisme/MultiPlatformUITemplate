@@ -11,12 +11,9 @@ Item {
         onLoaded: { item.refreshPage(idMainWindow.width, idMainMenu.height) }
     }
 
-
     Component.onCompleted: idLoader.source="PageMain.qml" //Setting Start page
-
 
     function refreshPage(width, height) {
         idLoader.item.refreshPage(width, height)
     }
-
 }

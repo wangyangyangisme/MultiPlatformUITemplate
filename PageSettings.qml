@@ -1,15 +1,11 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.1
 
-PageBasis {
-
-
+PageBasis {   
     Text {
         color: "white"
         text: qsTr("to edit settings go to main.qml!!!")
     }
-
-
 }
 
 

@@ -12,7 +12,7 @@ MultiPointTouchArea
     property int touchPoint2ReleasedX: 0
     property int touchPoint2DistancePressedReleasedX: 0
     property int time: 0
-
+    property string textBufor: ""
 
     touchPoints: [ TouchPoint { id: touchPoint1 }, TouchPoint { id: touchPoint2 } ]
 
@@ -91,25 +91,30 @@ MultiPointTouchArea
         //submenu actions when menu is open
         if (idMainWindow.isMenuOpen == true)
         {
-            //submenu1 touch action
+            //menu entry 1 action
             if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 2 &&  touchPoint1.y > titleBarHeight) {
-                console.log("submenu1 clicked")
                 idLoaderFrame.source="PageMain.qml"
                 idMainWindow.menuShowHide()
+                textBufor = idMainMenu.returnMenuName(1)
+                idTitleBar.setTitleBarName(textBufor)
             }
 
-            //submenu2 touch action
+            //menu entry 2 action
             if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) {
-                console.log("submenu2 clicked")
+                console.log("menu entry 2 clicked")
                 idLoaderFrame.source="PageSettings.qml"
                 idMainWindow.menuShowHide()
+                textBufor = idMainMenu.returnMenuName(2)
+                idTitleBar.setTitleBarName(textBufor)
             }
 
-            //submenu3 touch action
+            //menu entry 3 action
             if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 4 &&  touchPoint1.y > titleBarHeight *3) {
-                console.log("submenu3 clicked")
+                console.log("menu entry 3 clicked")
                 idLoaderFrame.source="PageAbout.qml"
                 idMainWindow.menuShowHide()
+                textBufor = idMainMenu.returnMenuName(3)
+                idTitleBar.setTitleBarName(textBufor)
             }
         }
     }

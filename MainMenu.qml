@@ -58,7 +58,6 @@ Rectangle {
 
     MenuEntry {
         id: idMenuEntry1
-        anchors.top: submenu2.bottom
         text: "Main"
         source: "/images/icons/phone.png"
     }
@@ -76,4 +75,20 @@ Rectangle {
         text: "About"
         source: "/images/icons/note.png"
     }
+
+    function returnMenuName(menuNumber)
+    {
+        switch(menuNumber)
+        {
+        case 1:
+            return idMenuEntry1.text
+        case 2:
+            return idMenuEntry2.text
+        case 3:
+            return idMenuEntry3.text
+        default:
+            console.log("returnMenuName ERROR")
+        }
+    }
+
 }

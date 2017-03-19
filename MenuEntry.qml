@@ -1,8 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.1
 
-//virtual object
-//all changes made here will affect all menu entries
+//Virtual
+//All changes made here affect every object using this pattern
 
 Rectangle {
     width: parent.width
@@ -15,9 +15,10 @@ Rectangle {
 
     BorderImage {
         id: idBorderImage
+        anchors.verticalCenter: parent.verticalCenter
         source: "" //at children object have to override this
-        height: parent.height
-        width: parent.height
+        height: parent.height * 0.7
+        width: parent.height * 0.7
         cache: true
         border.left: 0; border.top: 0
         border.right: 0; border.bottom: 0
