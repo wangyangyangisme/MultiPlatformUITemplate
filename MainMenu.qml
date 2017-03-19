@@ -56,76 +56,24 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: edge
-        anchors.left: parent.right
-        color: "#ffffff"
-        width: parent.width*0.05
-        height: parent.height
-    }
-
-    Rectangle {
-        id: submenu1
-        width: parent.width
-        height: submenuHeight
-        visible: true
-        color: "grey"
-
-        Label {
-            text: "Main"
-            anchors.centerIn: parent
-        }
-
-        Image {
-            source: "/images/icons/phone.png"
-            height: parent.height
-            width: parent.height
-            cache: true
-            fillMode: Image.PreserveAspectFit
-        }
-    }
-
-    Rectangle {
-        id: submenu2
-        anchors.top: submenu1.bottom
-        width: parent.width
-        height: submenuHeight
-        visible: true
-        color: "grey"
-
-        Label {
-            text: "Settings"
-            anchors.centerIn: parent
-        }
-
-        Image {
-            source: "/images/icons/setting.png"
-            height: parent.height
-            width: parent.height
-            cache: true
-            fillMode: Image.PreserveAspectFit
-        }
-    }
-
-    Rectangle {
-        id: submenu3
+    MenuEntry {
+        id: idMenuEntry1
         anchors.top: submenu2.bottom
-        width: parent.width
-        height: submenuHeight
-        visible: true
-        color: "grey"
+        text: "Main"
+        source: "/images/icons/phone.png"
+    }
 
-        Label {
-            text: "About"
-            anchors.centerIn: parent
-        }
+    MenuEntry {
+        id: idMenuEntry2
+        anchors.top: idMenuEntry1.bottom
+        text: "Settings"
+        source: "/images/icons/setting.png"
+    }
 
-        Image {
-            source: "/images/icons/note.png"
-            height: parent.height
-            width: parent.height
-            cache: true
-            fillMode: Image.PreserveAspectFit
-        }
+    MenuEntry {
+        id: idMenuEntry3
+        anchors.top: idMenuEntry2.bottom
+        text: "About"
+        source: "/images/icons/note.png"
     }
 }

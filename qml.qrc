@@ -9,5 +9,6 @@
         <file>PageAbout.qml</file>
         <file>LoaderFrame.qml</file>
         <file>PageBasis.qml</file>
+        <file>MenuEntry.qml</file>
     </qresource>
 </RCC>

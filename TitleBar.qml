@@ -14,8 +14,6 @@ Rectangle {
         height: parent.height
         width: height
 
-
-
         Rectangle {
             id: rect1
             color: "#fcfcfc"
@@ -47,7 +45,7 @@ Rectangle {
         anchors.left: idMainMenuButton.right
         anchors.centerIn: parent
         text: titleBarText
-        color: "#ffffff"
+        color: idMainWindow.textColor
         font.pixelSize: 0.5*parent.height
     }
 }

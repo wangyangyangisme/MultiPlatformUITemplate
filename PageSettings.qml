@@ -3,17 +3,13 @@ import QtQuick.Controls 2.1
 
 PageBasis {
 
-    RadioButton {
-        anchors.top: parent.top
+
+    Text {
+        color: "white"
+        text: qsTr("to edit settings go to main.qml!!!")
     }
 
-    TextEdit {
-        color: "white"
-        visible: true
-        anchors.centerIn: parent
-        width: 10
-        height: 100
-    }
+
 }
 
 

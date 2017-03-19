@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape //starting orientation
-    property bool isFullScreen: false
+    property bool isFullScreen: true
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate") //Applicatio name here
     visible: true
@@ -13,6 +13,9 @@ Window {
     minimumHeight: 360
     minimumWidth: 360
     visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
+
+//Text Properties
+    property color textColor: "#ffffff"
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.125
@@ -25,6 +28,7 @@ Window {
     property int mainMenuWidth: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.width * mainMenuWidthLandscapeRatio : idMainWindow.width * mainMenuWidthPortraitRatio
     property bool isMenuOpen: false
     property bool isAutohideMenuAfterChoice: true
+    //property bool isFullHeightMenu: true //TODO
 
 //Swipe area properties
     //property bool isTouchClickOnPress: true //if false then all touch click events will start OnRelease //TODO

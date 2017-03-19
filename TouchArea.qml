@@ -16,20 +16,6 @@ MultiPointTouchArea
 
     touchPoints: [ TouchPoint { id: touchPoint1 }, TouchPoint { id: touchPoint2 } ]
 
-//       Rectangle {
-//           width: 15; height: 15
-//           color: "green"
-//           x: touchPoint1.x
-//           y: touchPoint1.y
-//       }
-
-//       Rectangle {
-//           width: 15; height: 15
-//           color: "yellow"
-//           x: touchPoint2.x
-//           y: touchPoint2.y
-//       }
-
     Timer {
         id: swipeAreaTimer
         running: false
@@ -37,7 +23,6 @@ MultiPointTouchArea
         interval: 1
         onTriggered: {  parent.time++ }
     }
-
 
     onPressed:
     {
@@ -50,31 +35,8 @@ MultiPointTouchArea
             console.log("Pressed touchPoint1PressedX: " + touchPoint1PressedX)
 
             //show/hide menu button on press
-            if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) { idMainWindow.menuShowHide() }
-
-            //submenu actions when menu is open
-            if (idMainWindow.isMenuOpen == true)
-            {
-                //submenu1 touch action
-                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 2 &&  touchPoint1.y > titleBarHeight) {
-                    console.log("submenu1 clicked")
-                    idLoaderFrame.source="PageMain.qml"
-                    idMainWindow.menuShowHide()
-                }
-
-                //submenu2 touch action
-                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) {
-                    console.log("submenu2 clicked")
-                    idLoaderFrame.source="PageSettings.qml"
-                    idMainWindow.menuShowHide()
-                }
-
-                //submenu3 touch action
-                if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 4 &&  touchPoint1.y > titleBarHeight *3) {
-                    console.log("submenu3 clicked")
-                    idLoaderFrame.source="PageAbout.qml"
-                    idMainWindow.menuShowHide()
-                }
+            if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) {
+                idMainWindow.menuShowHide()
             }
         }
         else if (idMainWindow.isTwoFingerGestures == true)
@@ -102,6 +64,10 @@ MultiPointTouchArea
             if(touchPoint1DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureHide()
             else if((touchPoint1DistancePressedReleasedX *(-1)) > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureShow()
             swipeAreaTimer.running = false
+
+            //submenu actions when menu is open
+            menuAction()
+
         }
         else if (idMainWindow.isTwoFingerGestures == true)
         {
@@ -113,7 +79,38 @@ MultiPointTouchArea
             console.log("Released touchPoint2ReleasedX: " + touchPoint2ReleasedX)
             if(touchPoint1DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && touchPoint2DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureHide()
             else if((touchPoint1DistancePressedReleasedX *(-1))  > idMainWindow.minimumGestureActivationDistance && touchPoint2DistancePressedReleasedX *(-1)  > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureShow()
-            swipeAreaTimer.running = false
+            swipeAreaTimer.running = false          
+
+            //submenu actions when menu is open
+            menuAction()
+        }
+    }
+
+    function menuAction()
+    {
+        //submenu actions when menu is open
+        if (idMainWindow.isMenuOpen == true)
+        {
+            //submenu1 touch action
+            if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 2 &&  touchPoint1.y > titleBarHeight) {
+                console.log("submenu1 clicked")
+                idLoaderFrame.source="PageMain.qml"
+                idMainWindow.menuShowHide()
+            }
+
+            //submenu2 touch action
+            if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) {
+                console.log("submenu2 clicked")
+                idLoaderFrame.source="PageSettings.qml"
+                idMainWindow.menuShowHide()
+            }
+
+            //submenu3 touch action
+            if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 4 &&  touchPoint1.y > titleBarHeight *3) {
+                console.log("submenu3 clicked")
+                idLoaderFrame.source="PageAbout.qml"
+                idMainWindow.menuShowHide()
+            }
         }
     }
 }
