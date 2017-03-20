@@ -2,9 +2,9 @@ import QtQuick 2.5
 
 MultiPointTouchArea
 {
+    id: idTouchArea
     maximumTouchPoints : 2
     mouseEnabled: true
-    z: -1
     property int touchPoint1PressedX: 0
     property int touchPoint1ReleasedX: 0
     property int touchPoint1DistancePressedReleasedX: 0
@@ -26,46 +26,40 @@ MultiPointTouchArea
 
     onPressed:
     {
+//        console.log("idTouchArea -> onPressed")
         if (idMainWindow.isTwoFingerGestures == false) //one finger gestures
         {
-            console.log("One Finger Gesture start")
+
             touchPoint1PressedX = touchPoint1.x
             time = 0
             swipeAreaTimer.running = true
-            console.log("Pressed touchPoint1PressedX: " + touchPoint1PressedX)
-
-            //show/hide menu button on press
             if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) {
                 idMainWindow.menuShowHide()
             }
         }
         else if (idMainWindow.isTwoFingerGestures == true)
         {
-            console.log("Two Fingers Gesture start")
             touchPoint1PressedX = touchPoint1.x
             touchPoint2PressedX = touchPoint2.x
             time = 0
             swipeAreaTimer.running = true
-            console.log("Pressed touchPoint1PressedX: " + touchPoint1PressedX)
-            console.log("Pressed touchPoint2PressedX: " + touchPoint2PressedX)
 
-            //show/hide menu button on press
-            if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) { mainWindow.menuShowHide() }
+            if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) {
+                mainWindow.menuShowHide()
+            }
         }
     }
 
     onReleased:
     {
+//        console.log("idTouchArea -> onReleased")
         if(idMainWindow.isTwoFingerGestures == false)
         {
             touchPoint1ReleasedX = touchPoint1.x
             touchPoint1DistancePressedReleasedX = touchPoint1PressedX - touchPoint1ReleasedX
-            console.log("Released touchPoint1ReleasedX: " + touchPoint1ReleasedX)
             if(touchPoint1DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureHide()
             else if((touchPoint1DistancePressedReleasedX *(-1)) > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureShow()
             swipeAreaTimer.running = false
-
-            //submenu actions when menu is open
             menuAction()
 
         }
@@ -75,13 +69,9 @@ MultiPointTouchArea
             touchPoint2ReleasedX = touchPoint2.x
             touchPoint1DistancePressedReleasedX = touchPoint1PressedX - touchPoint1ReleasedX
             touchPoint2DistancePressedReleasedX = touchPoint2PressedX - touchPoint2ReleasedX
-            console.log("Released touchPoint1ReleasedX: " + touchPoint1ReleasedX)
-            console.log("Released touchPoint2ReleasedX: " + touchPoint2ReleasedX)
             if(touchPoint1DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && touchPoint2DistancePressedReleasedX > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureHide()
             else if((touchPoint1DistancePressedReleasedX *(-1))  > idMainWindow.minimumGestureActivationDistance && touchPoint2DistancePressedReleasedX *(-1)  > idMainWindow.minimumGestureActivationDistance && time < maximumTimeGesture) menuSwipeGestureShow()
             swipeAreaTimer.running = false          
-
-            //submenu actions when menu is open
             menuAction()
         }
     }
@@ -96,23 +86,24 @@ MultiPointTouchArea
                 idLoaderFrame.source="PageMain.qml"
                 idMainWindow.menuShowHide()
                 textBufor = idMainMenu.returnMenuName(1)
+                idMainMenu.setActiveMenu(1)
                 idTitleBar.setTitleBarName(textBufor)
             }
 
             //menu entry 2 action
             if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 3 &&  touchPoint1.y > titleBarHeight *2) {
-                console.log("menu entry 2 clicked")
                 idLoaderFrame.source="PageSettings.qml"
                 idMainWindow.menuShowHide()
                 textBufor = idMainMenu.returnMenuName(2)
+                idMainMenu.setActiveMenu(2)
                 idTitleBar.setTitleBarName(textBufor)
             }
 
             //menu entry 3 action
             if (touchPoint1PressedX < idMainMenu.width && touchPoint1.y < titleBarHeight * 4 &&  touchPoint1.y > titleBarHeight *3) {
-                console.log("menu entry 3 clicked")
                 idLoaderFrame.source="PageAbout.qml"
                 idMainWindow.menuShowHide()
+                idMainMenu.setActiveMenu(3)
                 textBufor = idMainMenu.returnMenuName(3)
                 idTitleBar.setTitleBarName(textBufor)
             }

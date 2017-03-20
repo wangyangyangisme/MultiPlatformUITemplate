@@ -14,6 +14,7 @@ Item {
     Component.onCompleted: idLoader.source="PageMain.qml" //Setting Start page
 
     function refreshPage(width, height) {
+//        console.log("idLoader -> refreshPage")
         idLoader.item.refreshPage(width, height)
     }
 }

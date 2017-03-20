@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape //starting orientation
-    property bool isFullScreen: true
+    property bool isFullScreen: false
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate") //Application name
     visible: true
@@ -15,19 +15,18 @@ Window {
     visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
 
 //Title bar properties
-    property double titleBarHeightLandscapeRatio: 0.125
+    property double titleBarHeightLandscapeRatio: 0.09
     property double titleBarHeightPortraitRatio: 0.06
     property int titleBarHeight: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.height * titleBarHeightLandscapeRatio : idMainWindow.height * titleBarHeightPortraitRatio
 
 //Main menu properties
-    property double mainMenuWidthLandscapeRatio: 0.5
-    property double mainMenuWidthPortraitRatio: 0.8
+    property double mainMenuWidthLandscapeRatio: 0.35
+    property double mainMenuWidthPortraitRatio: 0.65
     property int mainMenuWidth: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.width * mainMenuWidthLandscapeRatio : idMainWindow.width * mainMenuWidthPortraitRatio
     property bool isMenuOpen: false
     property bool isAutohideMenuAfterChoice: true
 
 //Swipe area properties
-    //property bool isTouchClickOnPress: true //if false then all touch click events will start OnRelease //TODO
     property bool isTwoFingerGestures: false //if false one finger gesture only avaiable
     property int maximumTimeGesture: 190 //[ms] in this time you must move from point a to b to activate gesture
     //property int minimumTimeGesture: 20 //[ms] minimum time to make gesture start //TODO
@@ -41,18 +40,20 @@ Window {
     signal menuSwipeGestureShow()
     signal menuRefresh()
 
-    onWidthChanged: {
+    onWidthChanged: {       
         if( width > height  && idMainWindow.orientation != 1) {
+//            console.log("idMainWindow -> onWidthChanged -> orientation = Landscape")
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
-            console.log("main window aspect ratio changed -> orientation = Landscape")
+
 
         } else if (width < height && idMainWindow.orientation != 0){
+//            console.log("idMainWindow -> onWidthChanged -> orientation = Portrait")
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
-            console.log("main window aspect ratio changed -> orientation = Portrait")
+
         }
         idLoaderFrame.refreshPage(idMainWindow.width, idMainWindow.height - titleBarHeight)
         menuRefresh()
@@ -60,36 +61,31 @@ Window {
 
     onHeightChanged: {
         if( idMainWindow.width > idMainWindow.height  && idMainWindow.orientation != 1) {
+//            console.log("idMainWindow -> onHeightChanged -> orientation = Landscape")
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
-            console.log("main window aspect ratio changed -> orientation = Landscape")
+
 
         } else if (idMainWindow.width < idMainWindow.height && idMainWindow.orientation != 0){
+//            console.log("idMainWindow -> onHeightChanged -> orientation = Portrait")
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
-            console.log("main window aspect ratio changed -> orientation = Portrait")
         }
         idLoaderFrame.refreshPage(idMainWindow.width, idMainWindow.height - titleBarHeight)
         menuRefresh()
     }
 
-    function changeActiveMenu(menuEntryNumber)
-    {
-        switch(menuEntryNumber, textToSet){
-        case 1:
-            console.log("1")
-            idLoaderFrame.source.
+    Component.onCompleted: {
+//        console.log("idMainWindow -> Component.onCompleted")
+        setStartupStates()
+    }
 
-            break;
-        case 2:
-            console.log("2")
-            break;
-        case 3:
-            console.log("3")
-            break;
-        }
+    function setStartupStates() {
+//        console.log("idMainWindow -> setStartupStates")
+        idMainMenu.setActiveMenu(1)
+        idTitleBar.setTitleBarName("Main")
     }
 
     TitleBar {

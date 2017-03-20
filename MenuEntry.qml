@@ -1,17 +1,17 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.1
 
-//Virtual
+//Virtual only, use as basis for menu entries
 //All changes made here affect every object using this pattern
 
 Rectangle {
     width: parent.width
     height: parent.submenuHeight
-    visible: true
     color: "#585858"
 
     property alias source: idBorderImage.source
     property alias text: idLabel.text
+    property int order: 0 //position in menu -> need to override
 
     BorderImage {
         id: idBorderImage
@@ -28,7 +28,7 @@ Rectangle {
         id: idLabel
         text: "" //at children object have to override this
         color: "#ffffff"
-        font.pixelSize: 0.5*parent.height
+        font.pixelSize: 0.4 * parent.height
         anchors.centerIn: parent
     }
 }

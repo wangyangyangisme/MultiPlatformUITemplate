@@ -1,14 +1,14 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.1
 
-//virtual object
+//Virtual only, use this for page basis
 //all changes made here will affect all pages using this object
 
 Rectangle {
     color: "#252525"
 
     function refreshPage(widthA, heightA) {
-        console.log("idPageSettings refresh")
+//        console.log("idPageBasis -> refreshPage")
         width = widthA
         height = heightA
     }

@@ -2,11 +2,12 @@ import QtQuick 2.5
 import QtQuick.Controls 2.1
 
 Rectangle {
+    id: idTitleBar
     color: "#434343"
     width: idMainWindow.width
     height: titleBarHeight
 
-    property string titleBarText: "MultiPlatformTemplate"
+    property string titleBarText: idMainWindow.title
 
     Rectangle {
         id: idMainMenuButton
@@ -51,6 +52,8 @@ Rectangle {
     }
 
     function setTitleBarName(text) {
+//        console.log("idTitleBar -> setTitleBarName")
         idTitleBarText.text = text
     }
+
 }

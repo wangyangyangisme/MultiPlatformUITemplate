@@ -4,7 +4,8 @@ import QtQuick.Controls 2.1
 PageBasis {   
     Text {
         color: "white"
-        text: qsTr("to edit settings go to main.qml!!!")
+        text: qsTr("Page settings")
+        anchors.centerIn: parent
     }
 }
 
