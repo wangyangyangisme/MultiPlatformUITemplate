@@ -52,7 +52,6 @@ Rectangle {
     }
 
     function setTitleBarName(text) {
-//        console.log("idTitleBar -> setTitleBarName")
         idTitleBarText.text = text
     }
 

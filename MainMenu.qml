@@ -13,44 +13,68 @@ Rectangle {
     property int animationDuration: 200
     property int currentlyActiveMenu: 1
 
+    Rectangle {
+        anchors.left: parent.right
+        color: "transparent"
+        height: parent.height
+        width: parent.width * 0.085
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                console.log("test")
+            }
+
+            drag {
+                target: idMainMenu
+                axis: Drag.XAxis
+                minimumX: -idMainMenu.width
+                maximumX: 0
+            }
+
+            onReleased: {
+                if( Math.abs(idMainMenu.x) > 0.5*idMainMenu.width ) {
+                    menuClose()
+                } else {
+                    menuOpen()
+                }
+            }
+        }
+    }
+
     Behavior on x { NumberAnimation { duration: animationDuration; easing.type: Easing.Linear } }
 
     Connections {
         target: idMainWindow
         onMenuShowHide: {
             if (x==0) {
-//                console.log("idMainMenu -> onMenuShowHide -> hide")
                 idMainWindow.isMenuOpen = false
                 x=-width
             }
             else {
-//                console.log("idMainMenu -> onMenuShowHide -> show")
                 x=0
                 idMainWindow.isMenuOpen = true
             }
         }
 
         onMenuSwipeGestureHide: {
-//            console.log("idMainMenu -> onMenuSwipeGestureHide")
             if (x==0) x=-width
             idMainWindow.isMenuOpen = false
         }
 
         onMenuSwipeGestureShow: {
-//            console.log("idMainMenu -> onMenuSwipeGestureShow")
             if (visible==false) visible=true
             x=0
             idMainWindow.isMenuOpen = true
         }
 
         onMenuRefresh: {
-//            console.log("idMainMenu -> onMenuRefresh")
             animationDuration = 0
             if(idMainWindow.isMenuOpen == true) {
                 x=0
             }
             else if (idMainWindow.isMenuOpen == false) {
-                x=0;
                 x=-width
             }
             animationDuration = animationDurationMain
@@ -78,7 +102,6 @@ Rectangle {
     }
 
     function returnMenuName(menuNumber) {
-//        console.log("idMainMenu -> returnMenuName")
         switch(menuNumber)
         {
         case 1:
@@ -88,12 +111,10 @@ Rectangle {
         case 3:
             return idMenuEntry3.text
         default:
-//            console.log("idMainMenu -> returnMenuName -> ERROR")
         }
     }
 
     function setActiveMenu(menuNumber) {
-//        console.log("idMainMenu -> setActiveMenu")
         clearActiveMenu(currentlyActiveMenu)
         currentlyActiveMenu = menuNumber
         switch(menuNumber)
@@ -108,12 +129,10 @@ Rectangle {
             idMenuEntry3.color = "#3e940a"
             break
         default:
-//            console.log("idMainMenu -> setActiveMenu -> ERROR")
         }
     }
 
     function clearActiveMenu(menuNumber) {
-//        console.log("idMainMenu -> clearActiveMenu")
         switch(menuNumber)
         {
         case 1:
@@ -126,7 +145,16 @@ Rectangle {
             idMenuEntry3.color = "#585858"
             break
         default:
-//            console.log("idMainMenu -> clearActiveMenu -> ERROR")
         }
+    }
+
+    function menuOpen() {
+        idMainMenu.x=0
+        idMainWindow.isMenuOpen = true
+    }
+
+    function menuClose() {
+        idMainMenu.x=-width
+        idMainWindow.isMenuOpen = false
     }
 }

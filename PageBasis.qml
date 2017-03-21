@@ -8,7 +8,6 @@ Rectangle {
     color: "#252525"
 
     function refreshPage(widthA, heightA) {
-//        console.log("idPageBasis -> refreshPage")
         width = widthA
         height = heightA
     }

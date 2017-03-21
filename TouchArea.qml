@@ -1,7 +1,7 @@
 import QtQuick 2.5
 
 MultiPointTouchArea
-{
+{ 
     id: idTouchArea
     maximumTouchPoints : 2
     mouseEnabled: true
@@ -26,7 +26,6 @@ MultiPointTouchArea
 
     onPressed:
     {
-//        console.log("idTouchArea -> onPressed")
         if (idMainWindow.isTwoFingerGestures == false) //one finger gestures
         {
 
@@ -52,7 +51,6 @@ MultiPointTouchArea
 
     onReleased:
     {
-//        console.log("idTouchArea -> onReleased")
         if(idMainWindow.isTwoFingerGestures == false)
         {
             touchPoint1ReleasedX = touchPoint1.x
@@ -78,7 +76,6 @@ MultiPointTouchArea
 
     function menuAction()
     {
-        //submenu actions when menu is open
         if (idMainWindow.isMenuOpen == true)
         {
             //menu entry 1 action
@@ -107,6 +104,7 @@ MultiPointTouchArea
                 textBufor = idMainMenu.returnMenuName(3)
                 idTitleBar.setTitleBarName(textBufor)
             }
+
         }
     }
 }

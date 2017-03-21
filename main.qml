@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 Window {
 //Main window properties
     property int orientation: 0 //0 = portrait, 1 = landscape //starting orientation
-    property bool isFullScreen: false
+    property bool isFullScreen: true
     id: idMainWindow
     title: qsTr("MultiPlatformTemplate") //Application name
     visible: true
@@ -12,7 +12,7 @@ Window {
     height: 640
     minimumHeight: 360
     minimumWidth: 360
-    visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
+    //visibility: isFullScreen ? Window.FullScreen : Window.Windowed //can't be windowed in android!! -> bug
 
 //Title bar properties
     property double titleBarHeightLandscapeRatio: 0.09
@@ -24,7 +24,6 @@ Window {
     property double mainMenuWidthPortraitRatio: 0.65
     property int mainMenuWidth: idMainWindow.orientation == idMainWindow.orientationLandscape ? idMainWindow.width * mainMenuWidthLandscapeRatio : idMainWindow.width * mainMenuWidthPortraitRatio
     property bool isMenuOpen: false
-    property bool isAutohideMenuAfterChoice: true
 
 //Swipe area properties
     property bool isTwoFingerGestures: false //if false one finger gesture only avaiable
@@ -42,14 +41,12 @@ Window {
 
     onWidthChanged: {       
         if( width > height  && idMainWindow.orientation != 1) {
-//            console.log("idMainWindow -> onWidthChanged -> orientation = Landscape")
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
 
 
         } else if (width < height && idMainWindow.orientation != 0){
-//            console.log("idMainWindow -> onWidthChanged -> orientation = Portrait")
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
@@ -61,14 +58,12 @@ Window {
 
     onHeightChanged: {
         if( idMainWindow.width > idMainWindow.height  && idMainWindow.orientation != 1) {
-//            console.log("idMainWindow -> onHeightChanged -> orientation = Landscape")
             idMainWindow.orientation = 1
             titleBarHeight = idMainWindow.height * titleBarHeightLandscapeRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightLandscapeRatio
 
 
         } else if (idMainWindow.width < idMainWindow.height && idMainWindow.orientation != 0){
-//            console.log("idMainWindow -> onHeightChanged -> orientation = Portrait")
             idMainWindow.orientation = 0
             titleBarHeight = idMainWindow.height * titleBarHeightPortraitRatio
             idMainMenu.submenuHeight = idMainWindow.height * titleBarHeightPortraitRatio
@@ -78,12 +73,10 @@ Window {
     }
 
     Component.onCompleted: {
-//        console.log("idMainWindow -> Component.onCompleted")
         setStartupStates()
     }
 
     function setStartupStates() {
-//        console.log("idMainWindow -> setStartupStates")
         idMainMenu.setActiveMenu(1)
         idTitleBar.setTitleBarName("Main")
     }
@@ -98,13 +91,14 @@ Window {
         anchors.top: idTitleBar.bottom
     }
 
-    MainMenu {
-        id: idMainMenu
-        anchors.top: idTitleBar.bottom
-    }
 
     TouchArea {
         id: idSwipeArea
         anchors.fill: parent
+    }
+
+    MainMenu {
+        id: idMainMenu
+        anchors.top: idTitleBar.bottom
     }
 }
