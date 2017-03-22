@@ -10,7 +10,7 @@ Rectangle {
     function refreshPage(widthA, heightA) {
         width = widthA
         height = heightA
-    }
+    }    
 }
 
 

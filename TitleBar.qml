@@ -54,5 +54,4 @@ Rectangle {
     function setTitleBarName(text) {
         idTitleBarText.text = text
     }
-
 }

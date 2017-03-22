@@ -11,7 +11,8 @@ Rectangle {
 
     property alias source: idBorderImage.source
     property alias text: idLabel.text
-    property int order: 0 //position in menu -> need to override
+    property int order: 0 //position in menu / need to override
+    property string pageSource: "PageBasis.qml" // need to override
 
     BorderImage {
         id: idBorderImage
@@ -30,5 +31,20 @@ Rectangle {
         color: "#ffffff"
         font.pixelSize: 0.4 * parent.height
         anchors.centerIn: parent
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onReleased: {
+            menuSet()
+        }
+    }
+
+    function menuSet() {
+        if (idMainWindow.isMenuOpen == true) {
+            idLoaderFrame.source = pageSource
+            idMainMenu.menuClose()
+            idMainMenu.menuSetActive(order)
+        }
     }
 }
