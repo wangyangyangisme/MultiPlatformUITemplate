@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.8
 
 Item {
     property alias source: idLoader.source
