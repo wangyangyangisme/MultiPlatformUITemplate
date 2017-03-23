@@ -5,7 +5,7 @@ Window {
 //Main window properties and initial states
     property int orientation: 0 //0 = portrait, 1 = landscape
     id: idMainWindow
-    title: qsTr("MultiPlatformTemplate") //Application name
+    title: qsTr("MultiPlatformTemplate")
     visible: true
     width: 360
     height: 640
@@ -56,11 +56,6 @@ Window {
         idMainMenu.menuRefresh()
     }
 
-    TitleBar {
-        id: idTitleBar
-        anchors.top: idMainWindow.top
-    }
-
     LoaderFrame {
         id: idLoaderFrame
         anchors.top: idTitleBar.bottom
@@ -74,5 +69,10 @@ Window {
     MainMenu {
         id: idMainMenu
         anchors.top: idTitleBar.bottom
+    }
+
+    TitleBar {
+        id: idTitleBar
+        anchors.top: idMainWindow.top
     }
 }
