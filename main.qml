@@ -56,11 +56,6 @@ Window {
         idMainMenu.menuRefresh()
     }
 
-    TitleBar {
-        id: idTitleBar
-        anchors.top: idMainWindow.top
-    }
-
     LoaderFrame {
         id: idLoaderFrame
         anchors.top: idTitleBar.bottom
@@ -74,5 +69,10 @@ Window {
     MainMenu {
         id: idMainMenu
         anchors.top: idTitleBar.bottom
+    }
+
+    TitleBar {
+        id: idTitleBar
+        anchors.top: idMainWindow.top
     }
 }

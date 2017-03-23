@@ -15,6 +15,13 @@ Rectangle {
         height: parent.height
         width: height
 
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                idMainWindow.isMenuOpen ? idMainMenu.menuClose() : idMainMenu.menuOpen()
+            }
+        }
+
         Rectangle {
             id: rect1
             color: "#fcfcfc"

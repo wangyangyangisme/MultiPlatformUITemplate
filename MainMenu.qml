@@ -14,6 +14,8 @@ Rectangle {
     property int currentlyActiveMenu: 1
     property int time: 0
     property int gestureDistance: 300
+    property color menuActive: "#3e940a"
+    property color menuInactive: "#585858"
 
     Timer {
         id: timer
@@ -63,13 +65,13 @@ Rectangle {
         switch(menuNumber)
         {
         case 1:
-            idMenuEntry1.color = "#3e940a"
+            idMenuEntry1.color = menuActive
             break
         case 2:
-            idMenuEntry2.color = "#3e940a"
+            idMenuEntry2.color = menuActive
             break
         case 3:
-            idMenuEntry3.color = "#3e940a"
+            idMenuEntry3.color = menuActive
             break
         default:
         }
@@ -94,13 +96,13 @@ Rectangle {
         switch(currentlyActiveMenu)
         {
         case 1:
-            idMenuEntry1.color = "#585858"
+            idMenuEntry1.color = menuInactive
             break
         case 2:
-            idMenuEntry2.color = "#585858"
+            idMenuEntry2.color = menuInactive
             break
         case 3:
-            idMenuEntry3.color = "#585858"
+            idMenuEntry3.color = menuInactive
             break
         default:
         }
@@ -127,7 +129,6 @@ Rectangle {
         animationDuration = animationDurationMain
     }
 
-//Here you can add  and personalize your menu entries
     MenuEntry {
         id: idMenuEntry1
         order: 1

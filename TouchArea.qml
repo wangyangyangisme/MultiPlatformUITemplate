@@ -25,9 +25,6 @@ MultiPointTouchArea
             touchPoint1PressedX = touchPoint1.x
             time = 0
             swipeAreaTimer.running = true
-            if (touchPoint1PressedX < titleBarHeight && touchPoint1.y < titleBarHeight) {
-                idMainWindow.isMenuOpen ? idMainMenu.menuClose() : idMainMenu.menuOpen()
-            }
         }
     }
 
