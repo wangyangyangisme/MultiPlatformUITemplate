@@ -12,24 +12,15 @@ Rectangle {
     property int animationDurationMain: 220
     property int animationDuration: 220
     property int currentlyActiveMenu: 1
-    property int time: 0
-    property int gestureDistance: 300
     property color menuActive: "#3e940a"
     property color menuInactive: "#585858"
 
-    Timer {
-        id: timer
-        running: false
-        repeat: true
-        interval: 1
-        onTriggered: {  parent.time++ }
-    }
-
     Rectangle {
-        anchors.left: parent.right
+        anchors.horizontalCenter: parent.right
         color: "transparent"
         height: parent.height
-        width: parent.width * .085
+        width: parent.width * 0.15
+        z: 2
 
         MouseArea {
             anchors.fill: parent
@@ -42,22 +33,21 @@ Rectangle {
             }
 
             onClicked: {
-                timer.start()
+                //timer.start()
             }
 
             onReleased: {
-                timer.stop()
+                //timer.stop()
 
-                if( Math.abs(idMainMenu.x) > 0.5*idMainMenu.width ) {
-                    menuClose()
-                } else {
-                    menuOpen()
-                }
+                if(idMainWindow.isMenuOpen && Math.abs(idMainMenu.x) > 0.10 * idMainMenu.width) menuClose()
+                else if(!idMainWindow.isMenuOpen && Math.abs(idMainMenu.x) < 0.90 * idMainMenu.width) menuOpen()
+                else if( Math.abs(idMainMenu.x) > 0.5 * idMainMenu.width ) { menuClose() }
+                else { menuOpen() }
             }
         }
     }
 
-    Behavior on x { NumberAnimation { id: a; duration: animationDuration; easing.type: Easing.Linear } }
+    Behavior on x { NumberAnimation { duration: animationDuration; easing.type: Easing.Linear } }
 
     function menuSetActive(menuNumber) {
         menuClearActive()
